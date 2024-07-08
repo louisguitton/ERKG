@@ -7,6 +7,9 @@
 1_lasvegas/export.json
 1_lasvegas/article/before_after.*
 
+icij/demo/
+icij/temp/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
