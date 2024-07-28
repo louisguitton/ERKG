@@ -77,3 +77,35 @@ To load into KùzuDB,
 To laod into Neo4j Desktop via GDS:
 `load_neo4j.ipynb`
 (4 min)
+
+
+To run KùzuDB using Docker:
+
+```bash
+docker run -p 8000:8000 \
+  -v ./demo:/database \
+  -e MODE=READ_ONLY \
+  -e NODE_OPTIONS="--max-old-space-size=5000" \
+  --rm kuzudb/explorer:dev
+```
+
+Cypher maintenance:
+
+```cypher
+# delete all nodes and relationships
+MATCH (n)
+DETACH DELETE n
+;
+
+# delete all indexes and constraints
+CALL apoc.schema.assert({},{},true)
+YIELD label, key
+RETURN *
+;
+
+
+# ICIJ subgraph exploration
+MATCH (a)-[b]->(c)-[d]->(e)
+RETURN *
+LIMIT 10;
+```
